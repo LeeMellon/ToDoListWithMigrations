@@ -1,0 +1,21 @@
+﻿@model ToDoListWithMigrations.Models.Category
+
+@{
+    ViewData["Title"] = "Category - Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Create a new Category</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Name)
+    @Html.EditorFor(model => model.Name)
+
+    @Html.LabelFor(model => model.CategoryId)
+    @Html.DropDownList("CategoryId")
+
+    <input type="submit" value="Create" class="btn btn-default" />
+}
+
+@Html.ActionLink("Back to List", "Index")
