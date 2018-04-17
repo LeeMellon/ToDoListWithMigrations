@@ -34,6 +34,16 @@ namespace ToDoListWithMigrations.Controllers
         public IActionResult Edit(int id)
         {
             var thisCategory = db.Categories.FirstOrDefault(categories => categories.CategoryId == id);
+            var AllItemsList = db.Items.ToList();
+            List<Item> theseItems = new List<Item>();
+            foreach (Item item in AllItemsList)
+            {
+                if (item.CategoryId != thisCategory.CategoryId)
+                {
+                    theseItems.Add(item);
+                }
+            }
+            ViewBag.itemsList = new SelectList(theseItems, "ItemId", "Description", "CategoryId");
             return View(thisCategory);
         }
         [HttpPost]
